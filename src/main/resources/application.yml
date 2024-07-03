@@ -1,0 +1,22 @@
+server:
+  port: 8050
+spring:
+  codec:
+    max-in-memory-size: 10MB
+  main:
+    lazy-initialization: true
+  #属性没值得参数返回接口不显示
+  jackson:
+    default-property-inclusion: non_null
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+uri:
+  call:
+    tell-how: "http://localhost:8050"
+    gh: "http://localhost:8050"
