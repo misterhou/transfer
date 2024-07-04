@@ -31,7 +31,7 @@ public class GhCallController {
      * @return
      */
     @PostMapping(value = "/call/startcall")
-    public AsynResponse callStartcall(@RequestBody AsynRequest asynRequest){
+    public AsynResponse callStartCall(@RequestBody AsynRequest asynRequest){
         AsynResponse asynResponse = basicCallService.callStartcall(asynRequest);
         return asynResponse;
     }
@@ -42,7 +42,7 @@ public class GhCallController {
      * @return
      */
     @PostMapping(value = "/call/answercall")
-    public AsynResponse callAnswercall(@RequestBody AsynRequest asynRequest){
+    public AsynResponse callAnswerCall(@RequestBody AsynRequest asynRequest){
         return basicCallService.callAnswercall(asynRequest);
     }
 
@@ -52,7 +52,7 @@ public class GhCallController {
      * @return
      */
     @PostMapping(value = "/call/releasecall")
-    public AsynResponse callReleasecall(@RequestBody AsynRequest asynRequest){
+    public AsynResponse callReleaseCall(@RequestBody AsynRequest asynRequest){
         return basicCallService.callReleasecall(asynRequest);
     }
 
@@ -62,7 +62,7 @@ public class GhCallController {
      * @return
      */
     @PostMapping(value = "/call/callcontrol")
-    public AsynResponse callCallcontrol(@RequestBody AsynRequest asynRequest){
+    public AsynResponse callCallControl(@RequestBody AsynRequest asynRequest){
         return basicCallService.callCallcontrol(asynRequest);
     }
 
@@ -72,7 +72,7 @@ public class GhCallController {
      * @return
      */
     @PostMapping(value = "/call/textmsg")
-    public AsynResponse callTextmsg(@RequestBody AsynRequest asynRequest){
+    public AsynResponse callTextMsg(@RequestBody AsynRequest asynRequest){
         return basicCallService.callTextmsg(asynRequest);
     }
 
@@ -83,7 +83,7 @@ public class GhCallController {
      * @return
      */
     @PostMapping(value = "/broadcast/startbc")
-    public AsynResponse broadcastStartbc(@RequestBody AsynRequest asynRequest){
+    public AsynResponse broadcastStartBc(@RequestBody AsynRequest asynRequest){
         return basicCallService.broadcastStartbc(asynRequest);
     }
 
@@ -93,7 +93,7 @@ public class GhCallController {
      * @return
      */
     @PostMapping(value = "/broadcast/addmember")
-    public AsynResponse broadcastAddmember(@RequestBody AsynRequest asynRequest){
+    public AsynResponse broadcastAddMember(@RequestBody AsynRequest asynRequest){
         return basicCallService.broadcastAddmember(asynRequest);
     }
 }

@@ -13,7 +13,9 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  *
@@ -127,7 +129,7 @@ public class BasicCallService {
     //广播结束状态上报
     public AsynResponse broadcastBcstatus(AsynRequest asynRequest) {
         String url = uriCallTellHow + "/broadcast/bcstatus";
-        AsynResponse asynResponse = forward(url, asynRequest.getData());
+        AsynResponse asynResponse = forward(url, getParams(asynRequest.getData()));
         asynResponse.setReqId(asynRequest.getReqId());
         return asynResponse;
     }
@@ -151,7 +153,7 @@ public class BasicCallService {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-        log.info("调用广哈服务：{}，请求参数：{}", url, json);
+        log.info("调用第三方服务：{}，请求参数：{}", url, json);
 
         //OK调用
         OkHttpClient client = new OkHttpClient();
@@ -174,9 +176,9 @@ public class BasicCallService {
             // 获取响应体
             String jsonString = response.body().string();
             map = objectMapper.readValue(jsonString, new TypeReference<Map<String, Object>>() {});
-            log.info("接收到广哈的响应数据: {}" , map.toString());
+            log.info("接收到第三方的响应数据: {}" , map.toString());
         } catch (IOException e) {
-            log.error("请求广哈服务异常", e);
+            log.error("请求第三方服务异常", e);
         }
         if (null != response) {
             message = response.code() + "";
@@ -185,5 +187,13 @@ public class BasicCallService {
                 .data(map)
                 .errorCode(message).timestamp(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
                 .build();
+    }
+
+    private Map<String, Object> getParams(Map<String, Object> data) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("reqId", UUID.randomUUID().toString().replace("-", ""));
+        params.put("data", data);
+        params.put("timestamp", LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+        return params;
     }
 }

@@ -1,8 +1,10 @@
 package com.fanyu.xa.transfer.controller;
 
+import com.fanyu.xa.transfer.entity.AsynRequest;
 import com.fanyu.xa.transfer.entity.RequestPar;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,10 +21,10 @@ public class TransferController {
      * @return
      */
     @PostMapping(value = "/call/startcall")
-    public RequestPar saveComment(@RequestBody RequestPar requestPar){
+    public RequestPar saveComment(@RequestBody AsynRequest requestPar){
 
         System.out.println(requestPar.toString());
-        return requestPar;
+        return getGhResponse();
     }
 
     /**
@@ -30,10 +32,10 @@ public class TransferController {
      * @return
      */
     @PostMapping(value = "/call/answercall")
-    public RequestPar callAnswercall(@RequestBody RequestPar requestPar){
+    public RequestPar callAnswercall(@RequestBody AsynRequest requestPar){
 
         System.out.println(requestPar.toString());
-        return requestPar;
+        return getGhResponse();
     }
 
     /**
@@ -41,10 +43,10 @@ public class TransferController {
      * @return
      */
     @PostMapping(value = "/call/releasecall")
-    public RequestPar callReleasecall(@RequestBody RequestPar requestPar){
+    public RequestPar callReleasecall(@RequestBody AsynRequest requestPar){
 
         System.out.println(requestPar.toString());
-        return requestPar;
+        return getGhResponse();
     }
 
     /**
@@ -52,10 +54,10 @@ public class TransferController {
      * @return
      */
     @PostMapping(value = "/call/callcontrol")
-    public RequestPar callCallcontrol(@RequestBody RequestPar requestPar){
+    public RequestPar callCallcontrol(@RequestBody AsynRequest requestPar){
 
         System.out.println(requestPar.toString());
-        return requestPar;
+        return getGhResponse();
     }
 
     /**
@@ -63,10 +65,10 @@ public class TransferController {
      * @return
      */
     @PostMapping(value = "/call/callevent")
-    public RequestPar callCallevent(@RequestBody RequestPar requestPar){
+    public RequestPar callCallevent(@RequestBody AsynRequest requestPar){
 
         System.out.println(requestPar.toString());
-        return requestPar;
+        return getTellHowResponse();
     }
 
     /**
@@ -74,10 +76,10 @@ public class TransferController {
      * @return
      */
     @PostMapping(value = "/call/dtmfevent")
-    public RequestPar callDtmfevent(@RequestBody RequestPar requestPar){
+    public RequestPar callDtmfevent(@RequestBody AsynRequest requestPar){
 
         System.out.println(requestPar.toString());
-        return requestPar;
+        return getTellHowResponse();
     }
 
     /**
@@ -85,10 +87,10 @@ public class TransferController {
      * @return
      */
     @PostMapping(value = "/call/textmsg")
-    public RequestPar callTextmsg(@RequestBody RequestPar requestPar){
+    public RequestPar callTextmsg(@RequestBody AsynRequest requestPar){
 
         System.out.println(requestPar.toString());
-        return requestPar;
+        return getGhResponse();
     }
 
     /**
@@ -96,10 +98,10 @@ public class TransferController {
      * @return
      */
     @PostMapping(value = "/call/sendtext")
-    public RequestPar callSendtext(@RequestBody RequestPar requestPar){
+    public RequestPar callSendtext(@RequestBody AsynRequest requestPar){
 
         System.out.println(requestPar.toString());
-        return requestPar;
+        return getGhResponse();
     }
 
     /**
@@ -107,10 +109,10 @@ public class TransferController {
      * @return
      */
     @PostMapping(value = "/call/recordaddr")
-    public RequestPar callRecordaddr(@RequestBody RequestPar requestPar){
+    public RequestPar callRecordaddr(@RequestBody AsynRequest requestPar){
 
         System.out.println(requestPar.toString());
-        return requestPar;
+        return getTellHowResponse();
     }
 
     /**
@@ -118,10 +120,10 @@ public class TransferController {
      * @return
      */
     @PostMapping(value = "/broadcast/startbc")
-    public RequestPar broadcastStartbc(@RequestBody RequestPar requestPar){
+    public RequestPar broadcastStartbc(@RequestBody AsynRequest requestPar){
 
         System.out.println(requestPar.toString());
-        return requestPar;
+        return getGhResponse();
     }
 
     /**
@@ -129,10 +131,10 @@ public class TransferController {
      * @return
      */
     @PostMapping(value = "/broadcast/addmember")
-    public RequestPar broadcastAddmember(@RequestBody RequestPar requestPar){
+    public RequestPar broadcastAddmember(@RequestBody AsynRequest requestPar){
 
         System.out.println(requestPar.toString());
-        return requestPar;
+        return getGhResponse();
     }
 
     /**
@@ -140,10 +142,10 @@ public class TransferController {
      * @return
      */
     @PostMapping(value = "/broadcast/memberstatus")
-    public RequestPar broadcastMemberstatus(@RequestBody RequestPar requestPar){
+    public RequestPar broadcastMemberstatus(@RequestBody AsynRequest requestPar){
 
         System.out.println(requestPar.toString());
-        return requestPar;
+        return getTellHowResponse();
     }
 
     /**
@@ -151,10 +153,10 @@ public class TransferController {
      * @return
      */
     @PostMapping(value = "/broadcast/bcstatus")
-    public RequestPar broadcastBcstatus(@RequestBody RequestPar requestPar){
+    public RequestPar broadcastBcstatus(@RequestBody AsynRequest requestPar){
 
         System.out.println(requestPar.toString());
-        return requestPar;
+        return getTellHowResponse();
     }
 
 
@@ -198,6 +200,21 @@ public class TransferController {
         System.out.println(username);
 
         return null;
+    }
+
+    @NotNull
+    private static RequestPar getGhResponse() {
+        RequestPar response = new RequestPar();
+        response.setType("gh");
+        response.setErrorCode("ok");
+        return response;
+    }
+
+    private static RequestPar getTellHowResponse() {
+        RequestPar response = new RequestPar();
+        response.setType("tell-how");
+        response.setErrorCode("ok");
+        return response;
     }
 
 }

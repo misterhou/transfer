@@ -31,9 +31,7 @@ public class TellHowCallController {
      * @return
      */
     @PostMapping(value = "/call/callevent")
-    public AsynResponse callCallevent(@RequestBody AsynRequest asynRequest){
-
-        log.info("callCallevent 接口收到参数：" + asynRequest.toString());
+    public AsynResponse callCallEvent(@RequestBody AsynRequest asynRequest){
         return basicCallService.callCallevent(asynRequest);
     }
 
@@ -43,9 +41,7 @@ public class TellHowCallController {
      * @return
      */
     @PostMapping(value = "/call/dtmfevent")
-    public AsynResponse callDtmfevent(@RequestBody AsynRequest asynRequest){
-
-        log.info("callDtmfevent 接口收到参数：" + asynRequest.toString());
+    public AsynResponse callDtmfEvent(@RequestBody AsynRequest asynRequest){
         return basicCallService.callDtmfevent(asynRequest);
     }
 
@@ -55,9 +51,7 @@ public class TellHowCallController {
      * @return
      */
     @PostMapping(value = "/call/sendtext")
-    public AsynResponse callSendtext(@RequestBody AsynRequest asynRequest){
-
-        log.info("callSendtext 接口收到参数：" + asynRequest.toString());
+    public AsynResponse callSendText(@RequestBody AsynRequest asynRequest){
         return basicCallService.callSendtext(asynRequest);
     }
 
@@ -68,9 +62,7 @@ public class TellHowCallController {
      * @return
      */
     @PostMapping(value = "/call/recordaddr")
-    public AsynResponse callRecordaddr(@RequestBody AsynRequest asynRequest){
-
-        log.info("callRecordaddr 接口收到参数：" + asynRequest.toString());
+    public AsynResponse callRecordAddr(@RequestBody AsynRequest asynRequest){
         return basicCallService.callRecordaddr(asynRequest);
     }
 
@@ -81,9 +73,7 @@ public class TellHowCallController {
      * @return
      */
     @PostMapping(value = "/broadcast/memberstatus")
-    public AsynResponse broadcastMemberstatus(@RequestBody AsynRequest asynRequest){
-
-        log.info("broadcastMemberstatus 接口收到参数：" + asynRequest.toString());
+    public AsynResponse broadcastMemberStatus(@RequestBody AsynRequest asynRequest){
         return basicCallService.broadcastMemberstatus(asynRequest);
     }
 
@@ -93,9 +83,7 @@ public class TellHowCallController {
      * @return
      */
     @PostMapping(value = "/broadcast/bcstatus")
-    public AsynResponse broadcastBcstatus(@RequestBody AsynRequest asynRequest){
-
-        log.info("broadcastBcstatus 接口收到参数：" + asynRequest.toString());
+    public AsynResponse broadcastBcStatus(@RequestBody AsynRequest asynRequest){
         return basicCallService.broadcastBcstatus(asynRequest);
     }
 }

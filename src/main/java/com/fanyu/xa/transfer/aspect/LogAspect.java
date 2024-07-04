@@ -19,6 +19,10 @@ public class LogAspect {
     public void tellHowCallLog() {
     }
 
+    @Pointcut("execution(* com.fanyu.xa.transfer.controller.TellHowCallController.*(..))")
+    public void ghCallLog() {
+    }
+
     @Around("tellHowCallLog()")
     public Object around(ProceedingJoinPoint joinPoint) {
         Object result = null;
@@ -26,9 +30,22 @@ public class LogAspect {
             log.info("泰豪调用：{}服务，请求数据：{}", joinPoint.getSignature().getName(), joinPoint.getArgs());
             result = joinPoint.proceed();
         } catch (Throwable e) {
-            log.error("日志记录拦截器调用方法出错", e);
+            log.error("泰豪调用广哈服务-日志记录拦截器调用方法出错", e);
         }
         log.info("泰豪调用：{}服务，请求数据：{}，响应数据：{}", joinPoint.getSignature().getName(), joinPoint.getArgs(), result);
+        return result;
+    }
+
+    @Around("ghCallLog()")
+    public Object aroundGh(ProceedingJoinPoint joinPoint) {
+        Object result = null;
+        try {
+            log.info("广哈调用：{}服务，请求数据：{}", joinPoint.getSignature().getName(), joinPoint.getArgs());
+            result = joinPoint.proceed();
+        } catch (Throwable e) {
+            log.error("广哈调用泰豪服务-日志记录拦截器调用方法出错", e);
+        }
+        log.info("广哈调用：{}服务，请求数据：{}，响应数据：{}", joinPoint.getSignature().getName(), joinPoint.getArgs(), result);
         return result;
     }
 }
