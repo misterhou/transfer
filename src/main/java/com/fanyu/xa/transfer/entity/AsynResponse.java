@@ -2,7 +2,10 @@ package com.fanyu.xa.transfer.entity;
 
 import lombok.Builder;
 import lombok.Data;
+import org.springframework.http.HttpStatus;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 /**
@@ -31,4 +34,19 @@ public class AsynResponse{
      * 错误码
      */
     private String errorCode;
+
+
+    public static AsynResponse notFound() {
+        AsynResponse asynResponse = AsynResponse.builder().build();
+        asynResponse.setErrorCode(String.valueOf(HttpStatus.NOT_FOUND.value()));
+        asynResponse.setTimestamp(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+        return asynResponse;
+    }
+
+    public static AsynResponse serviceError() {
+        AsynResponse asynResponse = AsynResponse.builder().build();
+        asynResponse.setErrorCode(String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR.value()));
+        asynResponse.setTimestamp(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+        return asynResponse;
+    }
 }

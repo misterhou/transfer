@@ -1,6 +1,7 @@
 package com.fanyu.xa.transfer.aspect;
 
 import com.fanyu.xa.transfer.controller.GhCallController;
+import com.fanyu.xa.transfer.entity.AsynResponse;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -31,6 +32,7 @@ public class LogAspect {
             result = joinPoint.proceed();
         } catch (Throwable e) {
             log.error("泰豪调用广哈服务-日志记录拦截器调用方法出错", e);
+            result = AsynResponse.serviceError();
         }
         log.info("泰豪调用：{}服务，请求数据：{}，响应数据：{}", joinPoint.getSignature().getName(), joinPoint.getArgs(), result);
         return result;
@@ -44,6 +46,7 @@ public class LogAspect {
             result = joinPoint.proceed();
         } catch (Throwable e) {
             log.error("广哈调用泰豪服务-日志记录拦截器调用方法出错", e);
+            result = AsynResponse.serviceError();
         }
         log.info("广哈调用：{}服务，请求数据：{}，响应数据：{}", joinPoint.getSignature().getName(), joinPoint.getArgs(), result);
         return result;
